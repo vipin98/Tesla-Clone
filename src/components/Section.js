@@ -1,28 +1,32 @@
 import React from 'react'
 import styled from 'styled-components'
+import Fade from 'react-reveal/Fade'
 function Section(props) {
     return (
         <Wrap backgroundImg={props.backgroundImg}>
-            <ItemText>
-                <h1>{props.title}</h1>
-                <p>{props.discription}</p>
-            </ItemText>
+            <Fade bottom>
+                <ItemText>
+                    <h1>{props.title}</h1>
+                    <p>{props.discription}</p>
+                </ItemText>
+            </Fade>
+            <Fade bottom>
+                <Buttons>
+                    <ButtonGroup>
+                        <LeftButton>
+                            {props.leftButton}
+                        </LeftButton>
+                        {props.rightButton &&
+                            <RightButton>
+                                {props.rightButton}
+                            </RightButton>
+                        }
 
-            <Buttons>
-               <ButtonGroup>
-                <LeftButton>
-                   {props.leftButton}
-                </LeftButton>
-                {props.rightButton &&
-                 <RightButton>
-                     {props.rightButton}
-                </RightButton>
-                }
-               
-            </ButtonGroup>
-            <DownArrow  src="/images/down-arrow.svg" />
-          </Buttons>
-         
+                    </ButtonGroup>
+                    <DownArrow src="/images/down-arrow.svg" />
+                </Buttons>
+            </Fade>
+
         </Wrap>
     )
 }
@@ -40,11 +44,13 @@ const Wrap = styled.div`
     flex-direction:column;
     justify-content:space-between;
     align-items:center;
-     background-image:${props=> `url("/images/${props.backgroundImg}")`}
+     background-image:${props => `url("/images/${props.backgroundImg}")`};
+     padding-top:10px;
 `
 const ItemText = styled.div`
     padding-top: 15vh;
     text-align: center;
+    z-index:10;
 `
 
 const ButtonGroup = styled.div`
@@ -86,6 +92,6 @@ const DownArrow = styled.img`
    overflow-x:hidden;
    animation: animateDown infinite 1.5s;
 `
-const Buttons=styled.div`
+const Buttons = styled.div`
      
 `
